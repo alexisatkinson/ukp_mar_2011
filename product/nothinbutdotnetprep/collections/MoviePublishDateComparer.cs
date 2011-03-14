@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace nothinbutdotnetprep.collections
 {
-    public class MovieTitleComparer : IComparer<Movie>
+    public class MoviePublishDateComparer : IComparer<Movie>
     {
         public System.ComponentModel.ListSortDirection SortDirection { get; private set; }
 
-        public MovieTitleComparer(ListSortDirection sortDirection)
+        public MoviePublishDateComparer(ListSortDirection sortDirection)
         {
             SortDirection = sortDirection;
         }
@@ -17,12 +16,12 @@ namespace nothinbutdotnetprep.collections
         {
             if (SortDirection == ListSortDirection.Ascending)
             {
-                return x.title.CompareTo(y.title);
+                return x.date_published.CompareTo(y.date_published);
             }
             else
             {
-                return y.title.CompareTo(x.title);
+                return y.date_published.CompareTo(x.date_published);
             }
         }
-   }
+    }
 }

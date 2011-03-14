@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="collections\Genre.cs" />
     <Compile Include="collections\Movie.cs" />
+    <Compile Include="collections\MoviePublishDateComparer.cs" />
     <Compile Include="collections\MovieStudioRankingAndYearPublishedComparer.cs" />
     <Compile Include="collections\MovieTitleComparer.cs" />
     <Compile Include="collections\MovieLibrary.cs" />
