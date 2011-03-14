@@ -69,12 +69,14 @@
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
+    <Compile Include="collections\Where.cs" />
     <Compile Include="utility\ConditionalCriteria.cs" />
     <Compile Include="utility\Criteria.cs" />
     <Compile Include="utility\CriteriaExtensions.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\MatchingCondition.cs" />
     <Compile Include="utility\OrCriteria.cs" />
+    <Compile Include="utility\PropertyAccessor.cs" />
     <Compile Include="utility\Where.cs" />
   </ItemGroup>
   <ItemGroup>
