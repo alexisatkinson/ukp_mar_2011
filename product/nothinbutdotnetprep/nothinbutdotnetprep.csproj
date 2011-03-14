@@ -75,6 +75,7 @@
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\MatchingCondition.cs" />
     <Compile Include="utility\OrCriteria.cs" />
+    <Compile Include="utility\Where.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

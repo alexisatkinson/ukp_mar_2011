@@ -45,4 +45,34 @@ namespace nothinbutdotnetprep.collections
 
 
     }
+
+
+    public delegate ProductionStudio GetPropertyToMatch<ItemToFilter>(ItemToFilter item);
+
+    public class SelectionCriteria<ItemToFilter>
+    {
+        public GetPropertyToMatch<ItemToFilter> property;
+
+        public SelectionCriteria(GetPropertyToMatch<ItemToFilter> property)
+        {
+            this.property = property;
+        }
+
+    }
+
+    public static class Extensions
+    {
+        public static Criteria<ItemToFilter> equal_to<ItemToFilter>(this SelectionCriteria<ItemToFilter> selector, ProductionStudio studio)
+        {
+            return new ConditionalCriteria<ItemToFilter>(movie => selector.property(movie) == studio);
+        }
+    }
+
+    public static class Where<ItemToFilter>
+    {
+        public static SelectionCriteria<ItemToFilter> has_a(GetPropertyToMatch<ItemToFilter> propertyToMatch)
+        {
+            return new SelectionCriteria<ItemToFilter>(propertyToMatch);
+        }
+    }
 }
