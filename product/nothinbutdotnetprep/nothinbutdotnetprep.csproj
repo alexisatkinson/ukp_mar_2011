@@ -50,6 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -69,10 +70,12 @@
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
+    <Compile Include="utility\filtering\ComparableCriteriaFactory .cs" />
     <Compile Include="utility\filtering\ConditionalCriteria.cs" />
     <Compile Include="utility\filtering\Criteria.cs" />
     <Compile Include="utility\filtering\CriteriaExtensions.cs" />
     <Compile Include="utility\filtering\CriteriaFactory.cs" />
+    <Compile Include="utility\filtering\DefaultCriteriaFactory.cs" />
     <Compile Include="utility\filtering\DoesNotMatchAnything.cs" />
     <Compile Include="utility\filtering\EnumerableExtensions.cs" />
     <Compile Include="utility\filtering\MatchingCondition.cs" />

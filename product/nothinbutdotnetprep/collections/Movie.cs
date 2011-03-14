@@ -33,14 +33,5 @@ namespace nothinbutdotnetprep.collections
             return title.GetHashCode();
         }
 
-        public static Criteria<Movie> is_in_genre(Genre genre)
-        {
-            return new IsInGenre(genre);
-        }
-
-        public static Criteria<Movie> is_published_by(ProductionStudio studio)
-        {
-            return new IsPublishedBy(studio);
-        }
     }
 }
