@@ -69,7 +69,6 @@
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySetOf.cs" />
-    <Compile Include="collections\Where.cs" />
     <Compile Include="utility\filtering\ConditionalCriteria.cs" />
     <Compile Include="utility\filtering\Criteria.cs" />
     <Compile Include="utility\filtering\CriteriaExtensions.cs" />
