@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using nothinbutdotnetprep.collections;
 
 namespace nothinbutdotnetprep.utility.filtering
 {
@@ -18,12 +20,14 @@ namespace nothinbutdotnetprep.utility.filtering
 
         public Criteria<ItemToFilter> equal_to_any(params ReturnType[] values)
         {
-            Criteria<ItemToFilter> result = equal_to(values[0]);
-            for (int i = 1; i < values.Length; i++)
-            {
-                result = result.or(equal_to(values[i]));
-            }
-            return result;
+            return new ConditionalCriteria<ItemToFilter>(item =>
+                                                             new List<ReturnType>(values).Contains(
+                                                                 property_accessor(item)));
+        }
+
+        public Criteria<ItemToFilter> not_equal_to(ReturnType value)
+        {
+            throw new NotImplementedException();
         }
     }
 }
