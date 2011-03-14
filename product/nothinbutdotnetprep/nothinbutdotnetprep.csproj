@@ -72,6 +72,7 @@
     <Compile Include="utility\filtering\ConditionalCriteria.cs" />
     <Compile Include="utility\filtering\Criteria.cs" />
     <Compile Include="utility\filtering\CriteriaExtensions.cs" />
+    <Compile Include="utility\filtering\CriteriaFactory.cs" />
     <Compile Include="utility\filtering\EnumerableExtensions.cs" />
     <Compile Include="utility\filtering\MatchingCondition.cs" />
     <Compile Include="utility\filtering\OrCriteria.cs" />

@@ -6,7 +6,6 @@ using developwithpassion.specifications.rhino;
 using Machine.Specifications;
 using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.tests.utility;
-using nothinbutdotnetprep.utility;
 using nothinbutdotnetprep.utility.filtering;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
@@ -71,6 +70,7 @@ namespace nothinbutdotnetprep.specs
                 provide_a_basic_sut_constructor_argument(movie_collection);
             };
         } ;
+
         public class when_iterating : movie_library_concern
         {
             static int number_of_movies;
@@ -81,11 +81,7 @@ namespace nothinbutdotnetprep.specs
             Because b = () =>
                 result = sut.all_movies();
 
-
-            It should_iterate = () =>
-            {
- 
-            };
+            It should_iterate = () => { };
             static IEnumerable<Movie> result;
         }
 
@@ -220,9 +216,10 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
             {
-                var results = sut.all_movies().all_items_matching(Movie.is_published_by(ProductionStudio.Pixar).or(
-                    Movie.is_published_by(ProductionStudio.Disney)));
+                var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to_any
+                    (ProductionStudio.Pixar, ProductionStudio.Disney);
 
+                var results = sut.all_movies().all_items_matching(criteria);
 
                 results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
             };
@@ -245,7 +242,8 @@ namespace nothinbutdotnetprep.specs
             {
                 var results = sut.all_movies_published_between_years(1982, 2003);
 
-                results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean);
+                results.ShouldContainOnly(indiana_jones_and_the_temple_of_doom, a_bugs_life,
+                                          pirates_of_the_carribean);
             };
 
             It should_be_able_to_find_all_kid_movies = () =>
