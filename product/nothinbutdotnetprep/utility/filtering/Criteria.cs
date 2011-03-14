@@ -1,6 +1,4 @@
-﻿using nothinbutdotnetprep.collections;
-
-namespace nothinbutdotnetprep.utility
+﻿namespace nothinbutdotnetprep.utility.filtering
 {
     public interface Criteria<ItemToMatch>
     {

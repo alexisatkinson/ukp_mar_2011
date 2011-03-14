@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace nothinbutdotnetprep.utility
+namespace nothinbutdotnetprep.utility.filtering
 {
     public static class EnumerableExtensions
     {

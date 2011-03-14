@@ -1,5 +1,5 @@
 using System;
-using nothinbutdotnetprep.utility;
+using nothinbutdotnetprep.utility.filtering;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -20,7 +20,7 @@ namespace nothinbutdotnetprep.collections
         {
             if (other == null) return false;
 
-            return ReferenceEquals(this,other) || is_equal_to_non_null_instance_of(other);
+            return ReferenceEquals(this, other) || is_equal_to_non_null_instance_of(other);
         }
 
         bool is_equal_to_non_null_instance_of(Movie other)
@@ -42,7 +42,5 @@ namespace nothinbutdotnetprep.collections
         {
             return new IsPublishedBy(studio);
         }
-
-
     }
 }

@@ -7,6 +7,7 @@ using Machine.Specifications;
 using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.tests.utility;
 using nothinbutdotnetprep.utility;
+using nothinbutdotnetprep.utility.filtering;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
  * MovieLibrary is an aggregate root for the Movie class. it exposes the ability to search,sort, and iterate over all of the movies that it aggregates.
