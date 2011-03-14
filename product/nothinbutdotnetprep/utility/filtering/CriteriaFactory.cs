@@ -27,7 +27,7 @@ namespace nothinbutdotnetprep.utility.filtering
 
         public Criteria<ItemToFilter> not_equal_to(ReturnType value)
         {
-            throw new NotImplementedException();
+            return new NotCriteria<ItemToFilter>(equal_to(value));
         }
     }
 }

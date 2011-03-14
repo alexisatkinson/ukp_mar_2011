@@ -16,4 +16,16 @@ namespace nothinbutdotnetprep.utility.filtering
             return left_side.matches(item) || right_side.matches(item);
         }
     }
+    public class NotCriteria<ItemToMatch> : Criteria<ItemToMatch>
+    {
+        private Criteria<ItemToMatch> toNot;
+        public NotCriteria(Criteria<ItemToMatch> notting)
+        {
+            toNot = notting;
+        }
+        public bool matches(ItemToMatch item)
+        {
+            return !toNot.matches(item);
+        }
+    }
 }
