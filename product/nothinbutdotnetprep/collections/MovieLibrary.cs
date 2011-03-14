@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using nothinbutdotnetprep.utility;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -14,72 +16,105 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies()
         {
-            return movies;
+            return movies.one_at_a_time();
         }
 
         public void add(Movie movie)
         {
-            throw new NotImplementedException();
+            if (already_contains(movie)) return;
+
+            movies.Add((movie));
         }
 
-        public IEnumerable<Movie> sort_all_movies_by_title_descending
+        bool already_contains(Movie movie)
         {
-            get { throw new NotImplementedException(); }
+            return movies.Contains(movie);
         }
 
-        public IEnumerable<Movie> all_movies_published_by_pixar()
+        IEnumerable<Movie> all_movies_matching(MatchingCondition<Movie> criteria)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Movie> sort_all_movies_by_title_ascending
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public IEnumerable<Movie> sort_all_movies_by_movie_studio_and_year_published()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Movie> all_movies_not_published_by_pixar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Movie> all_movies_published_after(int year)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
-        {
-            throw new NotImplementedException();
+            return movies.all_items_matching(criteria.as_criteria());
         }
 
         public IEnumerable<Movie> all_kid_movies()
         {
-            throw new NotImplementedException();
+            return all_movies_matching(movie => movie.genre == Genre.kids);
         }
 
         public IEnumerable<Movie> all_action_movies()
         {
-            throw new NotImplementedException();
+            return all_movies_matching(movie => movie.genre == Genre.action);
         }
+
+        public IEnumerable<Movie> all_movies_published_by_pixar()
+        {
+            return all_movies_matching(movie => movie.production_studio == ProductionStudio.Pixar);
+        }
+
+        public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
+        {
+            return all_movies_matching(movie => movie.production_studio == ProductionStudio.Pixar ||
+                movie.production_studio == ProductionStudio.Disney);
+        }
+
+        public IEnumerable<Movie> all_movies_published_after(int year)
+        {
+            return all_movies_matching(movie => movie.date_published.Year > year);
+        }
+
+        public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
+        {
+            return
+                all_movies_matching(
+                    movie => movie.date_published.Year <= endingYear && movie.date_published.Year >= startingYear);
+        }
+
+        public IEnumerable<Movie> all_movies_not_published_by_pixar()
+        {
+            return all_movies_matching(movie => movie.production_studio != ProductionStudio.Pixar);
+
+        }
+
+        public IEnumerable<Movie> sort_all_movies_by_title_descending
+        {
+            get
+            {
+                var result = new List<Movie>(movies);
+                result.Sort(new MovieTitleComparer(ListSortDirection.Descending));
+                return result;
+            }
+        }
+
+        public IEnumerable<Movie> sort_all_movies_by_title_ascending
+        {
+            get
+            {
+                var result = new List<Movie>(movies);
+                result.Sort(new MovieTitleComparer(ListSortDirection.Ascending));
+                return result;
+            }
+        }
+
+        public IEnumerable<Movie> sort_all_movies_by_movie_studio_and_year_published()
+        {
+            var result = new List<Movie>(movies);
+            result.Sort(new MovieStudioRankingAndYearPublishedComparer());
+            return result;
+        }
+
 
         public IEnumerable<Movie> sort_all_movies_by_date_published_descending()
         {
-            throw new NotImplementedException();
+            var result = new List<Movie>(movies);
+            result.Sort(new MoviePublishDateComparer(ListSortDirection.Descending));
+            return result;
         }
 
         public IEnumerable<Movie> sort_all_movies_by_date_published_ascending()
         {
-            throw new NotImplementedException();
+            var result = new List<Movie>(movies);
+            result.Sort(new MoviePublishDateComparer(ListSortDirection.Ascending));
+            return result;
         }
     }
 }

@@ -6,6 +6,7 @@ using developwithpassion.specifications.rhino;
 using Machine.Specifications;
 using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.tests.utility;
+using nothinbutdotnetprep.utility;
 
 /* The following set of Context/Specification pairs are in place to specify the functionality that you need to complete for the MovieLibrary class.
  * MovieLibrary is an aggregate root for the Movie class. it exposes the ability to search,sort, and iterate over all of the movies that it aggregates.
@@ -69,6 +70,23 @@ namespace nothinbutdotnetprep.specs
                 provide_a_basic_sut_constructor_argument(movie_collection);
             };
         } ;
+        public class when_iterating : movie_library_concern
+        {
+            static int number_of_movies;
+
+            Establish c = () =>
+                Enumerable.Range(1, 100).each(x => movie_collection.Add(new Movie()));
+
+            Because b = () =>
+                result = sut.all_movies();
+
+
+            It should_iterate = () =>
+            {
+ 
+            };
+            static IEnumerable<Movie> result;
+        }
 
         [Subject(typeof(MovieLibrary))]
         public class when_counting_the_number_of_movies : movie_library_concern
@@ -192,14 +210,18 @@ namespace nothinbutdotnetprep.specs
 
             It should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
-                var results = sut.all_movies_published_by_pixar();
+                var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to(ProductionStudio.Pixar);
+
+                var results = sut.all_movies().all_items_matching(criteria);
 
                 results.ShouldContainOnly(cars, a_bugs_life);
             };
 
             It should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
             {
-                var results = sut.all_movies_published_by_pixar_or_disney();
+                var results = sut.all_movies().all_items_matching(Movie.is_published_by(ProductionStudio.Pixar).or(
+                    Movie.is_published_by(ProductionStudio.Disney)));
+
 
                 results.ShouldContainOnly(a_bugs_life, pirates_of_the_carribean, cars);
             };
