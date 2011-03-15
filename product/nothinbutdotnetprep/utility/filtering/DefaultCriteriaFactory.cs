@@ -13,19 +13,22 @@ namespace nothinbutdotnetprep.utility.filtering
 
         public Criteria<ItemToFilter> equal_to(ReturnType value_to_equal)
         {
-            return ConditionalCriteria<ItemToFilter>.Create(m => property_accessor(m).Equals(value_to_equal));
+            return CreateCriteria(m => property_accessor(m).Equals(value_to_equal));
         }
 
         public Criteria<ItemToFilter> equal_to_any(params ReturnType[] values)
         {
-            return ConditionalCriteria<ItemToFilter>.Create(item =>
-                                                             new List<ReturnType>(values).Contains(
-                                                                 property_accessor(item)));
+            return CreateCriteria(item => new List<ReturnType>(values).Contains(property_accessor(item)));
         }
 
         public Criteria<ItemToFilter> not_equal_to(ReturnType value)
         {
             return new NotCriteria<ItemToFilter>(equal_to(value));
+        }
+
+        public Criteria<ItemToFilter> CreateCriteria(MatchingCondition<ItemToFilter> condition)
+        {
+            return new ConditionalCriteria<ItemToFilter>(condition);
         }
     }
 }
