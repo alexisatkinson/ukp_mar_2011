@@ -29,19 +29,19 @@ namespace nothinbutdotnetprep.utility.filtering
             return original_factory.not_equal_to(value);
         }
 
-        public Criteria<ItemToFilter> CreateCriteria(MatchingCondition<ItemToFilter> condition)
+        public Criteria<ItemToFilter> create_from(MatchingCondition<ItemToFilter> condition)
         {
-            return original_factory.CreateCriteria(condition);
+            return original_factory.create_from(condition);
         }
  
         public Criteria<ItemToFilter> greater_than(ReturnType value)
         {
-            return CreateCriteria(item => property_accessor(item).CompareTo(value) > 0);
+            return create_from(item => property_accessor(item).CompareTo(value) > 0);
         }
 
         public Criteria<ItemToFilter> between(ReturnType start, ReturnType end)
         {
-            return CreateCriteria(item => property_accessor(item).CompareTo(start) >= 0 &&
+            return create_from(item => property_accessor(item).CompareTo(start) >= 0 &&
                 property_accessor(item).CompareTo(end) <= 0);
         }
 
