@@ -27,25 +27,19 @@ namespace nothinbutdotnetprep.utility.filtering
             return original_factory.not_equal_to(value);
         }
 
-        public Criteria<ItemToFilter> create_from(MatchingCondition<ItemToFilter> condition)
+        public Criteria<ItemToFilter> create_from(Criteria<ReturnType> property_criteria)
         {
-            return original_factory.create_from(condition);
-        }
-
-        public ReturnType get_property_value(ItemToFilter item)
-        {
-            return original_factory.get_property_value(item);
+            return original_factory.create_from(property_criteria);
         }
 
         public Criteria<ItemToFilter> greater_than(ReturnType value)
         {
-            return create_from(item => get_property_value(item).CompareTo(value) > 0);
+            return create_from(new IsGreaterThan<ReturnType>(value));
         }
 
         public Criteria<ItemToFilter> between(ReturnType start, ReturnType end)
         {
-            return create_from(item => get_property_value(item).CompareTo(start) >= 0 &&
-                get_property_value(item).CompareTo(end) <= 0);
+            return create_from(new IsBetween<ReturnType>(start, end));
         }
 
 
