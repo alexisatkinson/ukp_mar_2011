@@ -84,6 +84,7 @@
     <Compile Include="utility\filtering\IsEqualToAny.cs" />
     <Compile Include="utility\filtering\IsGreaterThan.cs" />
     <Compile Include="utility\filtering\MatchingCondition.cs" />
+    <Compile Include="utility\filtering\NotCriteriaFactory.cs" />
     <Compile Include="utility\filtering\OrCriteria.cs" />
     <Compile Include="utility\filtering\PropertyAccessor.cs" />
     <Compile Include="utility\filtering\PropertyCriteria.cs" />

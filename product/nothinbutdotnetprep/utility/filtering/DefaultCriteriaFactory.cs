@@ -26,41 +26,10 @@ namespace nothinbutdotnetprep.utility.filtering
             return create_from(new IsEqualToAny<ReturnType>(values));
         }
 
-
-        public Criteria<ItemToFilter> not_equal_to(ReturnType value)
-        {
-            return equal_to(value).not();
-        }
-
         public Criteria<ItemToFilter> create_from(Criteria<ReturnType> property_criteria)
         {
             return new PropertyCriteria<ItemToFilter, ReturnType>(property_accessor,
                                                                   property_criteria);
-        }
-    }
-
-    public class NotCriteriaFactory<ItemToFilter, ReturnType> : CriteriaFactory<ItemToFilter, ReturnType>
-    {
-        private DefaultCriteriaFactory<ItemToFilter, ReturnType> criteriaFactory;
-
-        public NotCriteriaFactory(DefaultCriteriaFactory<ItemToFilter, ReturnType> criteriaFactory)
-        {
-            this.criteriaFactory = criteriaFactory;
-        }
-
-        public Criteria<ItemToFilter> create_from(Criteria<ReturnType> property_criteria)
-        {
-            return new NotCriteria<ItemToFilter>(criteriaFactory.create_from(property_criteria));
-        }
-
-        public Criteria<ItemToFilter> equal_to(ReturnType value_to_equal)
-        {
-            return new NotCriteria<ItemToFilter> ( criteriaFactory.equal_to(value_to_equal));
-        }
-
-        public Criteria<ItemToFilter> equal_to_any(params ReturnType[] values)
-        {
-            return new NotCriteria<ItemToFilter>(criteriaFactory.equal_to_any(values));
         }
     }
 }

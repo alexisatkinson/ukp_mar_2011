@@ -22,11 +22,6 @@ namespace nothinbutdotnetprep.utility.filtering
             return original_factory.equal_to_any(values);
         }
 
-        public Criteria<ItemToFilter> not_equal_to(ReturnType value)
-        {
-            return original_factory.not_equal_to(value);
-        }
-
         public Criteria<ItemToFilter> create_from(Criteria<ReturnType> property_criteria)
         {
             return original_factory.create_from(property_criteria);
