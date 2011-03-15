@@ -4,7 +4,7 @@ namespace nothinbutdotnetprep.utility.filtering
     {
         MatchingCondition<ItemToMatch> condition;
 
-        public ConditionalCriteria(MatchingCondition<ItemToMatch> condition)
+        private ConditionalCriteria(MatchingCondition<ItemToMatch> condition)
         {
             this.condition = condition;
         }
@@ -13,5 +13,12 @@ namespace nothinbutdotnetprep.utility.filtering
         {
             return condition(item);
         }
+
+        public static ConditionalCriteria<ItemToMatch> Create(MatchingCondition<ItemToMatch> condition)
+        {
+            return new ConditionalCriteria<ItemToMatch>(condition);
+        }
+
+
     }
 }

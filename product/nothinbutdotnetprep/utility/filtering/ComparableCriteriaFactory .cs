@@ -31,12 +31,12 @@ namespace nothinbutdotnetprep.utility.filtering
 
         public Criteria<ItemToFilter> greater_than(ReturnType value)
         {
-            return new ConditionalCriteria<ItemToFilter>(item => property_accessor(item).CompareTo(value) > 0);
+            return ConditionalCriteria<ItemToFilter>.Create(item => property_accessor(item).CompareTo(value) > 0);
         }
 
         public Criteria<ItemToFilter> between(ReturnType start, ReturnType end)
         {
-            return new ConditionalCriteria<ItemToFilter>(item => property_accessor(item).CompareTo(start) >= 0 &&
+            return ConditionalCriteria<ItemToFilter>.Create(item => property_accessor(item).CompareTo(start) >= 0 &&
                 property_accessor(item).CompareTo(end) <= 0);
         }
     }
