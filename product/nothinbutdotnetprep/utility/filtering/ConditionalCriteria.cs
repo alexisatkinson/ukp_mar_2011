@@ -13,5 +13,10 @@ namespace nothinbutdotnetprep.utility.filtering
         {
             return condition(item);
         }
+
+        public static ConditionalCriteria<ItemToMatch> Create(MatchingCondition<ItemToMatch> condition)
+        {
+            return new ConditionalCriteria<ItemToMatch>(condition);
+        }
     }
 }
