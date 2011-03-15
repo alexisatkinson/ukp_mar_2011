@@ -11,8 +11,7 @@ namespace nothinbutdotnetprep.utility.filtering
 
 	    public static ComparableCriteriaFactory<ItemToFilter,ReturnType> has_an<ReturnType>(PropertyAccessor<ItemToFilter,ReturnType> property_accessor) where ReturnType : IComparable<ReturnType>
 	    {
-	        return new ComparableCriteriaFactory<ItemToFilter, ReturnType>(property_accessor,
-                has_a(property_accessor));
+	        return new ComparableCriteriaFactory<ItemToFilter, ReturnType>(has_a(property_accessor));
 	    }
 	}
 

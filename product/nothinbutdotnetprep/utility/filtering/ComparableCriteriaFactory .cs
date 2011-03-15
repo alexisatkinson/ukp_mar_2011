@@ -5,12 +5,10 @@ namespace nothinbutdotnetprep.utility.filtering
     public class ComparableCriteriaFactory<ItemToFilter, ReturnType>  : CriteriaFactory<ItemToFilter,ReturnType>
         where ReturnType : IComparable<ReturnType>
     {
-        PropertyAccessor<ItemToFilter, ReturnType> property_accessor;
         CriteriaFactory<ItemToFilter, ReturnType> original_factory;
 
-        public ComparableCriteriaFactory(PropertyAccessor<ItemToFilter, ReturnType> property_accessor, CriteriaFactory<ItemToFilter, ReturnType> original_factory)
+        public ComparableCriteriaFactory(CriteriaFactory<ItemToFilter, ReturnType> original_factory)
         {
-            this.property_accessor = property_accessor;
             this.original_factory = original_factory;
         }
 
@@ -33,17 +31,23 @@ namespace nothinbutdotnetprep.utility.filtering
         {
             return original_factory.create_from(condition);
         }
- 
+
+        public ReturnType get_property_value(ItemToFilter item)
+        {
+            return original_factory.get_property_value(item);
+        }
+
         public Criteria<ItemToFilter> greater_than(ReturnType value)
         {
-            return create_from(item => property_accessor(item).CompareTo(value) > 0);
+            return create_from(item => get_property_value(item).CompareTo(value) > 0);
         }
 
         public Criteria<ItemToFilter> between(ReturnType start, ReturnType end)
         {
-            return create_from(item => property_accessor(item).CompareTo(start) >= 0 &&
-                property_accessor(item).CompareTo(end) <= 0);
+            return create_from(item => get_property_value(item).CompareTo(start) >= 0 &&
+                get_property_value(item).CompareTo(end) <= 0);
         }
+
 
     }
 }
